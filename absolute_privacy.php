@@ -9,6 +9,7 @@
  * License:     GPLv2+
  * Text Domain: absprivacy
  * Domain Path: /languages
+ * GitHub Plugin URI: https://github.com/cwerner1/wp-absolute-privacy
  *
  * Copyright Notice
  *
@@ -80,6 +81,7 @@ add_filter( 'the_content',            'abpr_check_is_feed' );              // fi
 add_filter( 'registration_errors',    'abpr_checkRegErrors' ); 		       // adds registration form error checks
 add_filter( 'authenticate',           'abpr_authenticateUser', 10, 3 );	   // authenticate new user
 add_filter( 'password_reset_message', 'abpr_profileRecoveryLink', 10, 2 );
+add_filter( 'wpseo_sitemap_entry',    'abpr_wp_seo_url', 1, 3);
 
 // Wireup shortcodes
 add_shortcode( 'loginform',   'abpr_loginShortcode' );

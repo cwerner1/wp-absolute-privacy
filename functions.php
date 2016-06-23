@@ -1213,3 +1213,30 @@ function abpr_doUpgrade() {
 		}
 	}
 }
+
+
+/**
+ * Filter for Yoast SEO Plugin
+ *
+ * Hides the url from the sitemap if the user is not allowed
+ *
+ * @param string $url
+ * @param string $type
+ * @param object $object
+ * @return false|string
+ */
+function abpr_wp_seo_url($url, $type, $object)
+{
+	$options = get_option(ABSPRIVACY_OPTIONS);
+	$members_page = $options['members_only_page'];
+
+	if ($members_page == $object->ID) {
+		return false;
+	}
+
+	$ancestors = get_ancestors($object->ID);
+	if(in_array($members_page,$ancestors)){
+		return false;
+	}
+	return $url;
+}
